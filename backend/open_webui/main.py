@@ -311,6 +311,8 @@ logging.basicConfig(stream=sys.stdout, level=GLOBAL_LOG_LEVEL)
 log = logging.getLogger(__name__)
 log.setLevel(SRC_LOG_LEVELS["MAIN"])
 
+# Update CORS_ALLOW_ORIGIN to include your frontend URL
+CORS_ALLOW_ORIGIN = ["https://moutoai.rf.gd"]
 
 class SPAStaticFiles(StaticFiles):
     async def get_response(self, path: str, scope):
@@ -321,6 +323,7 @@ class SPAStaticFiles(StaticFiles):
                 return await super().get_response("index.html", scope)
             else:
                 raise ex
+
 
 
 print(
